@@ -1,0 +1,409 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+    box-sizing: border-box;
+}
+
+body {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    background-color:#000000;
+    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-size:12px;
+    height:100%;
+    margin:0px;
+    padding:0px;
+    text-transform:uppercase;
+    width:100%;
+}
+
+/* Portrait layout (default) */
+.app {
+    position:absolute;             /* position in the center of the screen */
+    left:0;
+    top:0;
+    height:100vh;                   /* text area height */
+    width:100vw;
+    overflow: hidden;                   /* text area width */
+}
+
+.product-ui {
+    max-height: 50%;
+    width: 100%;
+    background-color: white;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    overflow-y: auto;
+}
+
+.row {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.product {
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 5px;
+}
+
+.name, .quantity {
+    font-size: medium;
+}
+
+.quantity {
+    float: right;
+}
+
+.tax {
+    float: right;
+}
+
+.total {
+    box-shadow: 0 0 1px #e0e0e0;
+    margin: -10px;
+    margin-bottom: 0;
+    padding: 10px;
+}
+
+.total .name {
+    text-align: center;
+}
+
+.total b {
+    font-size: medium;
+}
+
+
+
+.button {
+    float: right;
+    touch-callout: none;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    display: inline-block;
+    border: .2em solid;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    opacity: 0.6;
+    color: #FFF;
+  }
+  .button__text {
+    display: block;
+    padding: 1em 2em;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  .button__text:before {
+    content: attr(title);
+  }
+  .button__text--bis {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    -webkit-transform: translateX(-1em);
+            transform: translateX(-1em);
+    opacity: 0;
+  }
+  .button__mask {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: white;
+    -webkit-transform: translateX(-100%) rotate(45deg);
+            transform: translateX(-100%) rotate(45deg);
+    transition: all 0.3s;
+  }
+  
+  .button:hover {
+    opacity: 1;
+  }
+  .button:hover .button__text {
+    -webkit-animation: fx-text .3s ease-out;
+            animation: fx-text .3s ease-out;
+  }
+  .button:hover .button__text--bis {
+    -webkit-animation: fx-text-bis .3s ease-out;
+            animation: fx-text-bis .3s ease-out;
+  }
+  .button:hover .button__mask {
+    -webkit-animation: fx-mask .3s ease-out;
+            animation: fx-mask .3s ease-out;
+  }
+  
+  .button:active {
+    opacity: 1;
+    background: white;
+    color: inherit;
+  }
+  
+  @-webkit-keyframes fx-mask {
+    0% {
+      -webkit-transform: translateX(-100%) rotate(45deg);
+              transform: translateX(-100%) rotate(45deg);
+    }
+    100% {
+      -webkit-transform: translateX(100%) rotate(45deg);
+              transform: translateX(100%) rotate(45deg);
+    }
+  }
+  
+  @keyframes fx-mask {
+    0% {
+      -webkit-transform: translateX(-100%) rotate(45deg);
+              transform: translateX(-100%) rotate(45deg);
+    }
+    100% {
+      -webkit-transform: translateX(100%) rotate(45deg);
+              transform: translateX(100%) rotate(45deg);
+    }
+  }
+  @-webkit-keyframes fx-text {
+    0% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: translateX(1em);
+              transform: translateX(1em);
+      opacity: 0;
+    }
+  }
+  @keyframes fx-text {
+    0% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: translateX(1em);
+              transform: translateX(1em);
+      opacity: 0;
+    }
+  }
+  @-webkit-keyframes fx-text-bis {
+    0% {
+      -webkit-transform: translateX(-1em);
+              transform: translateX(-1em);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  @keyframes fx-text-bis {
+    0% {
+      -webkit-transform: translateX(-1em);
+              transform: translateX(-1em);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+
+
+  @font-face {
+    font-family: "Segoe UI";
+    src:
+        local("Segoe UI Light"),
+        url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.woff2) format("woff2"),
+        url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.woff) format("woff"),
+        url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.ttf) format("truetype");
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: "Segoe UI";
+    src:
+        local("Segoe UI Semilight"),
+        url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.woff2) format("woff2"),
+        url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.woff) format("woff"),
+        url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.ttf) format("truetype");
+    font-weight: 200;
+}
+
+@font-face {
+    font-family: "Segoe UI";
+    src:
+        local("Segoe UI"),
+        url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.woff2) format("woff2"),
+        url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.woff) format("woff"),
+        url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.ttf) format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Segoe UI";
+    src:
+        local("Segoe UI Bold"),
+        url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/bold/latest.woff2) format("woff2"),
+        url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/bold/latest.woff) format("woff"),
+        url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/bold/latest.ttf) format("truetype");
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: "Segoe UI";
+    src:
+        local("Segoe UI Semibold"),
+        url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semibold/latest.woff2) format("woff2"),
+        url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semibold/latest.woff) format("woff"),
+        url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semibold/latest.ttf) format("truetype");
+    font-weight: 700;
+}
+#box {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  background-color: #b81414;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+
+}
+#logo {
+  margin: 13px 0 0 13px;
+  float: left;
+}
+
+#logo h6 {
+  color: white;
+  font-size: 13px;
+  font-weight: 200;
+  font-family: Segoe UI;
+  letter-spacing: 0px;
+  margin: 0px auto auto 5px;
+  float: left;
+}
+#box h1 {
+  color: white !important;
+  font-size: 65px;
+  letter-spacing: -2px;
+  text-align: center;
+  margin: 0;
+}
+#box .text {
+  color: #9fd5b7;
+  font-weight: 400;
+  font-family: Segoe UI;
+}
+#box h4 {
+  font-size: 12px;
+  font-weight: 400;
+  opacity: 50%;
+}
+#starting-txt {
+    position: absolute;
+    bottom: 0;
+    float: left;
+}
+#author-txt {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    float: right;
+}
+#author-txt a {
+  color: inherit;
+  text-decoration: none;
+}
+.text img {
+  width: 15px;
+}
+#close-btn:after {
+  transform: rotate(-45deg);
+}
+#minimize-btn {
+  width: 10px;
+  height: 2px;
+  right: 42px;
+  top: 20px;
+  content: ' ';
+  background-color: white;
+  position: absolute;
+  float: right;
+}
+.loading {
+  height: 20px;
+  /* border: 1px solid #ddd; */
+}
+.dot {
+  width: 4px;
+  height: 4px;
+  left: -10%;
+  margin: auto;
+  border-radius: 5px;
+  background: white;
+  position: absolute;
+}
+#dot1 {
+  animation: dotslide 2.8s infinite cubic-bezier(0.2, .8, .8, 0.2);
+}
+#dot2 {
+  animation: dotslide 2.8s .2s infinite cubic-bezier(0.2, .8, .8, 0.2);
+}
+#dot3 {
+  animation: dotslide 2.8s .4s infinite cubic-bezier(0.2, .8, .8, 0.2);
+}
+#dot4 {
+  animation: dotslide 2.8s .6s infinite cubic-bezier(0.2, .8, .8, 0.2);
+}
+#dot5 {
+  animation: dotslide 2.8s .8s infinite cubic-bezier(0.2, .8, .8, 0.2);
+}
+@keyframes dotslide {
+  0% {
+    left: -20%;
+  }
+  100% {
+    left: 110%;
+  }
+}
+
+@keyframes bgfx {
+    0% {
+      background-color: hsl(0, 80, 40);
+    }
+    100% {
+        background-color: hsl(355, 80, 40);
+    }
+  }
